@@ -10,15 +10,15 @@ public class DatabaseInitializer {
     public static void initialize() throws SQLException {
 
         String sql = """
-                CREATE TABLE IF NOT EXISTS despesa (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    descricao TEXT NOT NULL,
-                    valor NUMERIC NOT NULL,
-                    categoria TEXT NOT NULL,
-                    data TEXT NOT NULL,
-                    forma_pagamento TEXT NOT NULL
-                )
-                """;
+        CREATE TABLE IF NOT EXISTS despesa (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            descricao TEXT NOT NULL,
+            valor_centavos INTEGER NOT NULL,
+            categoria TEXT NOT NULL,
+            data TEXT NOT NULL,
+            forma_pagamento TEXT NOT NULL
+        )
+        """;
 
         try (Connection connection =
                      DatabaseConfig.getConnection();
