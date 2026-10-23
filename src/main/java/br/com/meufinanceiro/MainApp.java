@@ -8,16 +8,28 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import br.com.meufinanceiro.config.DatabaseConfig;
+import br.com.meufinanceiro.config.DatabaseInitializer;
+import javafx.scene.control.Alert;
 
 public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) {
 
-        try (var connection = DatabaseConfig.getConnection()) {
-            System.out.println("Banco SQLite conectado com sucesso!");
+        try {
+            DatabaseInitializer.initialize();
+            System.out.println("Banco de dados inicializado com sucesso!");
+
         } catch (Exception e) {
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro de inicialização");
+            alert.setHeaderText("Não foi possível iniciar o banco de dados.");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+
+            throw new IllegalStateException(
+                    "Falha ao inicializar o banco de dados.", e
+            );
         }
 
         Label titulo = new Label("Meu Financeiro");
