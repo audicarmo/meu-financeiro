@@ -1,0 +1,107 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="br.com.meufinanceiro.controller.DespesaController"
+            prefWidth="1000"
+            prefHeight="700"
+            styleClass="root-pane">
+
+    <top>
+        <VBox spacing="6" styleClass="header">
+            <Label text="Meu Financeiro"
+                   styleClass="titulo"/>
+            <Label text="Controle de despesas"
+                   styleClass="subtitulo"/>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox spacing="20" styleClass="conteudo">
+
+            <GridPane hgap="12" vgap="12">
+
+                <Label text="Descrição"
+                       GridPane.rowIndex="0"
+                       GridPane.columnIndex="0"/>
+
+                <TextField fx:id="descricaoField"
+                           promptText="Ex.: Petiscos para os pets"
+                           GridPane.rowIndex="1"
+                           GridPane.columnIndex="0"/>
+
+                <Label text="Valor (R$)"
+                       GridPane.rowIndex="0"
+                       GridPane.columnIndex="1"/>
+
+                <TextField fx:id="valorField"
+                           promptText="250,00"
+                           GridPane.rowIndex="1"
+                           GridPane.columnIndex="1"/>
+
+                <Label text="Categoria"
+                       GridPane.rowIndex="2"
+                       GridPane.columnIndex="0"/>
+
+                <ComboBox fx:id="categoriaCombo"
+                          prefWidth="250"
+                          GridPane.rowIndex="3"
+                          GridPane.columnIndex="0"/>
+
+                <Label text="Pagamento"
+                       GridPane.rowIndex="2"
+                       GridPane.columnIndex="1"/>
+
+                <ComboBox fx:id="pagamentoCombo"
+                          prefWidth="250"
+                          GridPane.rowIndex="3"
+                          GridPane.columnIndex="1"/>
+
+                <Label text="Data"
+                       GridPane.rowIndex="4"
+                       GridPane.columnIndex="0"/>
+
+                <DatePicker fx:id="dataPicker"
+                            GridPane.rowIndex="5"
+                            GridPane.columnIndex="0"/>
+
+            </GridPane>
+
+            <HBox spacing="10">
+                <Button text="Salvar despesa"
+                        onAction="#salvarDespesa"
+                        styleClass="botao-primario"/>
+                <Button text="Excluir selecionada"
+                        onAction="#excluirDespesa"/>
+            </HBox>
+
+            <TableView fx:id="despesasTable"
+                       VBox.vgrow="ALWAYS">
+
+                <columns>
+                    <TableColumn fx:id="descricaoColumn"
+                                 text="Descrição"
+                                 prefWidth="260"/>
+                    <TableColumn fx:id="valorColumn"
+                                 text="Valor"
+                                 prefWidth="110"/>
+                    <TableColumn fx:id="categoriaColumn"
+                                 text="Categoria"
+                                 prefWidth="160"/>
+                    <TableColumn fx:id="dataColumn"
+                                 text="Data"
+                                 prefWidth="120"/>
+                    <TableColumn fx:id="pagamentoColumn"
+                                 text="Pagamento"
+                                 prefWidth="150"/>
+                </columns>
+
+            </TableView>
+
+        </VBox>
+    </center>
+
+</BorderPane>

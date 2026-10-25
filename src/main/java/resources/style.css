@@ -1,0 +1,44 @@
+
+.root-pane {
+    -fx-background-color: #f5f7fb;
+    -fx-font-family: "Arial";
+}
+
+.header {
+    -fx-background-color: #ffffff;
+    -fx-padding: 24;
+}
+
+.titulo {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #172033;
+}
+
+.subtitulo {
+    -fx-font-size: 14px;
+    -fx-text-fill: #64748b;
+}
+
+.conteudo {
+    -fx-padding: 24;
+}
+
+.text-field,
+.combo-box,
+.date-picker {
+    -fx-pref-height: 38px;
+}
+
+.botao-primario {
+    -fx-background-color: #2563eb;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10 18;
+    -fx-background-radius: 6;
+}
+
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: #e2e8f0;
+}

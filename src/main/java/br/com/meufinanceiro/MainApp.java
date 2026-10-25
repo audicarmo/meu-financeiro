@@ -1,8 +1,10 @@
 package br.com.meufinanceiro;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -14,44 +16,38 @@ import javafx.scene.control.Alert;
 public class MainApp extends Application {
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage) throws Exception {
 
         try {
             DatabaseInitializer.initialize();
-            System.out.println("Banco de dados inicializado com sucesso!");
-
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro de inicialização");
-            alert.setHeaderText("Não foi possível iniciar o banco de dados.");
+            alert.setHeaderText(
+                    "Não foi possível iniciar o banco de dados."
+            );
             alert.setContentText(e.getMessage());
             alert.showAndWait();
-
-            throw new IllegalStateException(
-                    "Falha ao inicializar o banco de dados.", e
-            );
+            return;
         }
 
-        Label titulo = new Label("Meu Financeiro");
-        titulo.setStyle(
-                "-fx-font-size: 28px;" +
-                        "-fx-font-weight: bold;"
+        FXMLLoader loader = new FXMLLoader(
+                MainApp.class.getResource("despesas.fxml")
         );
 
-        Label subtitulo = new Label(
-                "Seu controle financeiro começa aqui!"
+        Parent root = loader.load();
+
+        Scene scene = new Scene(root, 1000, 700);
+
+        scene.getStylesheets().add(
+                MainApp.class.getResource("styles.css")
+                        .toExternalForm()
         );
-
-        VBox layout = new VBox(15, titulo, subtitulo);
-        layout.setAlignment(Pos.CENTER);
-        layout.setPadding(new Insets(30));
-
-        Scene scene = new Scene(layout, 900, 600);
 
         stage.setTitle("Meu Financeiro");
         stage.setScene(scene);
-        stage.setMinWidth(700);
-        stage.setMinHeight(450);
+        stage.setMinWidth(800);
+        stage.setMinHeight(600);
         stage.show();
     }
 
